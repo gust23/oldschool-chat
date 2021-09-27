@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@200;300;400&display=swap');
+
+.title {
+  font-family: 'Martel', serif;
+  color: #a67c00;
+  text-decoration: underline;
+}
+
+body {
+  background: #ccc;
+  color: #444;
+}
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 80px auto;
+  border: 4px ridge #ccc;
+  box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
+  background-color: #484848;
+}
+.error {
+  color: #ff3f80;
+  font-size: 14px;
+}
+button {
+  text-decoration: none;
+  background: #484848;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border: 4px ridge #ffbf00;
+  padding: 10px 20px;
+}
