@@ -2,7 +2,7 @@
 
 .title {
   font-family: 'Martel', serif;
-  color: #a67c00;
+  color: #ffbf00;
   text-decoration: underline;
 }
 
@@ -14,20 +14,21 @@ body {
   width: 90%;
   max-width: 960px;
   margin: 80px auto;
-  border: 4px ridge #ccc;
+  border: 7px ridge #ccc;
   box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
   background-color: #484848;
 }
 .error {
-  color: #ff3f80;
-  font-size: 14px;
+  color: red;
+  font-size: 16px;
 }
 button {
   text-decoration: none;
-  background: #484848;
-  color: white;
+  background: #ccc;
+  color: black;
   font-weight: bold;
   border: 0;
   border: 4px ridge #ffbf00;
   padding: 10px 20px;
+  cursor: pointer;
 }
