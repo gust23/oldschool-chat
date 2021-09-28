@@ -7,13 +7,15 @@
 }
 
 body {
+  font-smooth: never;
   background: #ccc;
   color: #444;
+  font-family: 'Tahoma';
 }
 .container {
-  width: 90%;
-  max-width: 960px;
-  margin: 80px auto;
+  width: 100%;
+  max-width: 650px;
+  margin: 40px auto;
   border: 7px ridge #ccc;
   box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
   background-color: #484848;

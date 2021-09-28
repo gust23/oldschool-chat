@@ -7,7 +7,7 @@
       <p>No acount yet? <span @click="showLogin = false">Signup</span> instead</p>
     </div>
     <div v-else>
-      <h2 class="title">SignUp</h2>
+      <h2 class="title">Sign Up</h2>
       <SignupForm @signup="enterChat" />
       <p>Already registered? <span @click="showLogin = true">Login</span> instead</p>
     </div>
