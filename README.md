@@ -1,19 +1,7 @@
-# live-chat
+# oldschool-chat
 
-## Project setup
-```
-npm install
-```
+## Simple live-chat application inspired by 90s MMORPGs, Diablo and other classic titles.
 
-### Compiles and hot-reloads for development
 ```
-npm run serve
+https://vue-firebase-516e9.web.app/
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

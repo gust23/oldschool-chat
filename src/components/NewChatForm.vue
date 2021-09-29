@@ -18,11 +18,14 @@ import { ref } from 'vue';
 import getUser from '../composables/getUser';
 import { timestamp } from '../firebase/config';
 import useCollection from '../composables/useCollection';
+import useSound from 'vue-use-sound';
+import buttonSfx from '../assets/30.ogg';
 export default {
   setup(props) {
     const { user } = getUser();
     const { addDoc, error } = useCollection('messages');
     const message = ref('');
+    const [play] = useSound(buttonSfx);
 
     const handleSubmit = async () => {
       const chat = {
@@ -30,6 +33,9 @@ export default {
         name: user.value.displayName,
         createdAt: timestamp(),
       };
+      if (message.value === '8') {
+        play();
+      }
       if (message.value) {
         await addDoc(chat);
       }
@@ -41,6 +47,7 @@ export default {
       message,
       handleSubmit,
       error,
+      play,
     };
   },
 };
