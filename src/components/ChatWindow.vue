@@ -3,9 +3,8 @@
     <div class="error" v-if="error">{{ error }}</div>
     <div ref="scroll" v-if="documents" class="messages">
       <div v-for="doc in formattedDocuments" :key="doc.id" class="single">
-        <span class="name">
-          <span class="created-at">{{ doc.createdAt }} </span> {{ doc.name }}:</span
-        >
+        <span class="created-at">{{ doc.createdAt }} </span>
+        <span :class="{ user: user.displayName === doc.name }" class="name"> {{ doc.name }}:</span>
         <span class="message">{{ doc.message }} </span>
       </div>
     </div>
@@ -17,16 +16,22 @@ import getCollection from '../composables/getCollection';
 import { formatDistanceToNow } from 'date-fns';
 import { computed } from '@vue/reactivity';
 import format from 'date-fns/format';
-import { onUpdated } from '@vue/runtime-core';
+import { onUpdated, watch, watchEffect } from 'vue';
 import { ref } from 'vue';
+import useLogin from '../composables/useLogin';
+import { auth } from '../firebase/config';
+
 export default {
   setup(props) {
     const scroll = ref(null);
+    const user = auth.currentUser;
+
     onUpdated(() => {
       scroll.value.scrollTop = scroll.value.scrollHeight;
     });
 
     const { error, documents } = getCollection('messages');
+
     const formattedDocuments = computed(() => {
       if (documents.value) {
         return documents.value.map((item) => {
@@ -36,7 +41,7 @@ export default {
       }
     });
 
-    return { error, documents, formattedDocuments, scroll };
+    return { error, documents, formattedDocuments, scroll, user };
   },
 };
 </script>
@@ -44,6 +49,10 @@ export default {
 <style scoped>
 .messages::-webkit-scrollbar {
   display: none;
+}
+
+.user.name {
+  color: #ffbf00;
 }
 
 .chat-window {
@@ -61,6 +70,7 @@ export default {
   display: inline-block;
   color: #999;
   font-size: 12px;
+  margin-right: 5px;
 }
 .name {
   font-size: 15px;

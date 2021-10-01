@@ -1,16 +1,14 @@
 <template>
-  <div class="teste">
-    <form>
-      <textarea
-        @keypress.enter.prevent="handleSubmit"
-        placeholder="Type a message and hit enter to send..."
-        v-model="message"
-      >
-      </textarea>
-      <button @click.prevent="handleSubmit">Send</button>
-      <div class="error">{{ error }}</div>
-    </form>
-  </div>
+  <form>
+    <textarea
+      @keypress.enter.prevent="handleSubmit"
+      placeholder="Type a message and hit enter to send..."
+      v-model="message"
+    >
+    </textarea>
+    <button @click.prevent="handleSubmit">Send</button>
+    <div class="error">{{ error }}</div>
+  </form>
 </template>
 
 <script>
@@ -18,24 +16,28 @@ import { ref } from 'vue';
 import getUser from '../composables/getUser';
 import { timestamp } from '../firebase/config';
 import useCollection from '../composables/useCollection';
-import useSound from 'vue-use-sound';
-import buttonSfx from '../assets/30.ogg';
+
 export default {
-  setup(props) {
+  setup(props, context) {
     const { user } = getUser();
     const { addDoc, error } = useCollection('messages');
-    const message = ref('');
-    const [play] = useSound(buttonSfx);
 
+    const message = ref('');
+    const playSound = ref(false);
     const handleSubmit = async () => {
+      if (message.value === '8') {
+        playSound.value = true;
+      } else {
+        playSound.value = false;
+      }
+
       const chat = {
         message: message.value,
         name: user.value.displayName,
         createdAt: timestamp(),
+        isSound: playSound.value,
       };
-      if (message.value === '8') {
-        play();
-      }
+
       if (message.value) {
         await addDoc(chat);
       }
@@ -47,7 +49,6 @@ export default {
       message,
       handleSubmit,
       error,
-      play,
     };
   },
 };

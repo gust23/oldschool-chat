@@ -17,7 +17,6 @@ export default {
   setup(props, context) {
     const { user } = getUser();
     const router = useRouter();
-
     const handleLogout = () => {
       router.push({ name: 'Welcome' });
     };
